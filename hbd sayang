@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Elsa 💗</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Dancing+Script:wght@600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --pink: #ff8fb1;
+  --purple: #b69cff;
+  --dark: #100d20;
+}
+
+body {
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  color: white;
+  text-align: center;
+  overflow-x: hidden;
+  background:
+    radial-gradient(ellipse at top, #39234d 0%, transparent 60%),
+    linear-gradient(135deg, #100d20, #20152f, #120d21);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: .3;
+  background-image: radial-gradient(white 1px, transparent 1px);
+  background-size: 45px 45px;
+}
+
+.container {
+  width: min(700px, 92%);
+  margin: auto;
+  padding: 60px 0;
+  position: relative;
+  z-index: 1;
+}
+
+.tag {
+  display: inline-block;
+  border: 1px solid #ff9cbd80;
+  border-radius: 50px;
+  padding: 9px 18px;
+  color: #ffc4d8;
+  font-size: 12px;
+  letter-spacing: 2px;
+  margin-bottom: 25px;
+}
+
+h1 {
+  font-size: clamp(43px, 10vw, 76px);
+  line-height: 1.15;
+  font-weight: 800;
+
+  background: linear-gradient(
+    90deg,
+    #ffffff,
+    #ff9cbd,
+    #c4a6ff
+  );
+
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.script {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(36px, 7vw, 54px);
+  color: #ffb7ce;
+  margin: 10px 0 20px;
+}
+
+.subtitle {
+  color: #d9cce8;
+  line-height: 1.9;
+  font-size: 14px;
+  max-width: 480px;
+  margin: 0 auto 25px;
+}
+
+.cake {
+  font-size: 100px;
+  margin: 25px 0;
+  filter: drop-shadow(0 0 25px #ff91bb55);
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(-3deg); }
+  50% { transform: translateY(-13px) rotate(3deg); }
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  border-radius: 50px;
+  padding: 14px 25px;
+  font-weight: 600;
+  font-size: 14px;
+  transition: .3s;
+}
+
+button:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 8px 25px #ff91bb40;
+}
+
+.primary {
+  color: #28152e;
+  background: linear-gradient(100deg, #ffb2cc, #d4b8ff);
+}
+
+.secondary {
+  background: #ffffff10;
+  border: 1px solid #ffffff30;
+  color: white;
+  margin-top: 12px;
+}
+
+.card {
+  display: none;
+  text-align: left;
+  margin-top: 35px;
+  padding: 28px;
+  border-radius: 25px;
+  border: 1px solid #ffb6d544;
+  background: #ffffff0b;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 15px 50px #00000030;
+  animation: appear .8s ease;
+}
+
+.card.show {
+  display: block;
+}
+
+.card h2 {
+  color: #ffb6d0;
+  font-family: 'Dancing Script', cursive;
+  font-size: 37px;
+  margin-bottom: 18px;
+}
+
+.card p {
+  color: #eee2f6;
+  font-size: 14px;
+  line-height: 2;
+  white-space: pre-line;
+}
+
+.signature {
+  text-align: right;
+  color: #ffb6d0;
+  font-family: 'Dancing Script', cursive;
+  font-size: 28px;
+  margin-top: 22px;
+}
+
+.wish-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.wish {
+  background: #ffffff09;
+  border-radius: 14px;
+  padding: 14px;
+  font-size: 13px;
+  color: #f3ddeb;
+}
+
+footer {
+  color: #9e8eaf;
+  font-size: 11px;
+  margin-top: 45px;
+}
+
+.heart {
+  position: fixed;
+  bottom: -30px;
+  z-index: 5;
+  pointer-events: none;
+  animation: rise linear forwards;
+}
+
+@keyframes rise {
+  to {
+    transform: translateY(-110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+#confetti {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.small {
+  color: #ad9cbd;
+  font-size: 11px;
+  margin-top: 15px;
+}
+
+@media (max-width: 480px) {
+  .container { padding: 45px 0; }
+  .card { padding: 22px; }
+  .cake { font-size: 85px; }
+}
+</style>
+</head>
+
+<body>
+<canvas id="confetti"></canvas>
+
+<main class="container">
+
+  <div class="tag">✦ A LITTLE SURPRISE FOR YOU ✦</div>
+
+  <h1>Happy Birthday</h1>
+  <div class="script">Elsa ♡</div>
+
+  <p class="subtitle">
+    Hari ini bukan hari biasa, karena seseorang yang
+    istimewa sedang bertambah usia. 💗
+    <br>
+    Dan seseorang itu adalah kamu.
+  </p>
+
+  <div class="cake" id="cake">🎂</div>
+
+  <button class="primary" id="openBtn" onclick="openSurprise()">
+    Buka Kejutanmu 💌
+  </button>
+
+  <p class="small">Psst... ada sesuatu yang ingin kusampaikan.</p>
+
+  <section class="card" id="letter">
+    <h2>Untuk Elsa tersayang ♡</h2>
+
+    <p id="letterText"></p>
+
+    <div class="signature">— Dari abang batak (jawa) 💗</div>
+  </section>
+
+  <section class="card" id="wishes">
+    <h2>Doa kecil untukmu my princess ✨</h2>
+
+    <p>Di hari spesialmu ini, abang berharap...</p>
+
+    <div class="wish-list">
+      <div class="wish">🌷 Semoga sayang selalu sehat dan bahagia.</div>
+      <div class="wish">🌙 Semoga setiap lelahnya sayang diganti dengan hal baik.</div>
+      <div class="wish">⭐ Semoga impian sayang satu per satu menjadi nyata.</div>
+      <div class="wish">🧸 Semoga sayang selalu dikelilingi orang yang tulus.</div>
+      <div class="wish">💗 Semoga sayang tidak lupa betapa berharganya dirimu.</div>
+    </div>
+  </section>
+
+  <section class="card" id="finalCard">
+    <h2>Eh, satu lagi... 🥺</h2>
+
+    <p>
+      Kalau hari ini sayang tersenyum, berarti satu harapan abang
+      sudah terkabul.
+
+      Terima kasih sudah menjadi dirimu sendiri, sayang.
+      Jangan terlalu keras pada diri sendiri, ya sayang.
+      Abang ada di sini sedia untuk bantuk sayang
+      jangan pernah ngerasa sendiri yah sayang
+      sayang juga pantas mendapatkan hal-hal baik.
+      sayang juga berhak mendapatkan kasih sayang yang besar.
+
+      Selamat ulang tahun yah sayang  Semoga bab baru dalam hidup ecaa
+      dipenuhi cerita indah, tawa, dan kebahagiaan.
+      abang akan selalu hadir, di setiap cerita hidup eca.
+      abanag akan selalu sayang di setiap hari ecaa
+      dan abang akan selalu cinta di setiap adlaah pokoknya xixixix
+
+      Dan kalau suatu hari sayang membuka web ini lagi,
+      semoga kamu ingat bahwa hari ini ada seseorang
+      yang ingin membuatmu tersenyum. ♡
+    </p>
+
+    <div class="signature">Happy Birthday, Sayang acuu! 🎂</div>
+  </section>
+
+  <div id="moreButtons" style="display:none; margin-top:25px;">
+    <button class="primary" onclick="showWishes()">
+      Baca Doa Untukmu ✨
+    </button>
+    <br>
+    <button class="secondary" onclick="celebrate()">
+      🎉 Rayakan Sekali Lagi!
+    </button>
+    <br>
+    <button class="secondary" onclick="showFinal()">
+      Ada Satu Pesan Lagi 💌
+    </button>
+  </div>
+
+  <footer>
+    MADE WITH ♡ AND A LITTLE BIT OF COURAGE
+    <br><br>
+    Specially for Elsa · Happy Birthday ✨
+  </footer>
+
+</main>
+
+<script>
+const message = `Sayang, selamat ulang tahun yaa! 🎂💗
+
+Hari ini adalah hari spesialmu, dan abang berharap sayang.
+
+Semoga di umur yang baru ini, sayang semakin bahagia,
+semakin kuat menghadapi apa pun, dan semakin dekat
+dengan semua impian yang sayang punya.
+
+Kalau dunia kadang terasa melelahkan,
+jangan lupa istirahat. sayang nggak harus selalu
+kuat setiap saat.
+kalau butuh bantuan, datang ke abang yah abang
+selalu sedia untuk sayang
+
+Abang mungkin nggak bisa menjanjikan dunia yang sempurna,
+tapi abang berharap hal-hal sederhana bisa membuat ecaa
+tersenyum, termasuk kejutan kecil ini.
+
+Dan jujur...
+membuat ucapan ini saja sudah cukup membuat abang
+berpikir berkali-kali tentang bagaimana caranya
+agar hari spesial eca terasa lebih berkesan. Hehe. 🙈
+
+Sekali lagi, selamat ulang tahun, sayang acuu, princess acuu.
+Tetap jadi sayang yang unik, lucu, dan penuh cerita 
+ya walaupun sering ngambek si xiixixiix.
+
+Semoga bahagia selalu menyertaimu. ♡`;
+
+let opened = false;
+let heartTimer;
+
+function openSurprise() {
+  if (opened) return;
+  opened = true;
+
+  document.getElementById('letter').classList.add('show');
+  document.getElementById('openBtn').style.display = 'none';
+  document.getElementById('moreButtons').style.display = 'block';
+
+  const text = document.getElementById('letterText');
+  let i = 0;
+
+  function typeWriter() {
+    if (i < message.length) {
+      text.textContent += message.charAt(i);
+      i++;
+      setTimeout(typeWriter, 24);
+    }
+  }
+
+  typeWriter();
+  celebrate();
+  startHearts();
+}
+
+function showWishes() {
+  document.getElementById('wishes').classList.add('show');
+  document.getElementById('wishes').scrollIntoView({
+    behavior: 'smooth',
+    block: 'center'
+  });
+}
+
+function showFinal() {
+  document.getElementById('finalCard').classList.add('show');
+  document.getElementById('finalCard').scrollIntoView({
+    behavior: 'smooth',
+    block: 'center'
+  });
+  celebrate();
+}
+
+function startHearts() {
+  if (heartTimer) return;
+
+  heartTimer = setInterval(() => {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.textContent = ['💗', '💕', '♡', '✨', '💖'][
+      Math.floor(Math.random() * 5)
+    ];
+
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.fontSize = (15 + Math.random() * 20) + 'px';
+    heart.style.animationDuration = (4 + Math.random() * 4) + 's';
+
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 8000);
+  }, 500);
+}
+
+// Confetti tanpa library tambahan
+const canvas = document.getElementById('confetti');
+const ctx = canvas.getContext('2d');
+let pieces = [];
+let animationId;
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+
+function celebrate() {
+  const colors = ['#ff8fb1', '#ffd166', '#c4a6ff', '#ffffff', '#ffb6d0'];
+
+  for (let i = 0; i < 150; i++) {
+    pieces.push({
+      x: Math.random() * canvas.width,
+      y: -Math.random() * canvas.height,
+      size: 4 + Math.random() * 6,
+      speed: 2 + Math.random() * 4,
+      drift: Math.random() * 3 - 1.5,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      rotation: Math.random() * 6
+    });
+  }
+
+  if (!animationId) animateConfetti();
+}
+
+function animateConfetti() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  pieces.forEach(p => {
+    p.y += p.speed;
+    p.x += p.drift;
+    p.rotation += 0.05;
+
+    ctx.save();
+    ctx.translate(p.x, p.y);
+    ctx.rotate(p.rotation);
+    ctx.fillStyle = p.color;
+    ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+    ctx.restore();
+  });
+
+  pieces = pieces.filter(p => p.y < canvas.height + 20);
+
+  if (pieces.length > 0) {
+    animationId = requestAnimationFrame(animateConfetti);
+  } else {
+    cancelAnimationFrame(animationId);
+    animationId = null;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+}
+</script>
+
+</body>
+</html>
